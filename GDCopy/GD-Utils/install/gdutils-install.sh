@@ -26,7 +26,7 @@ proxy / http://127.0.0.1:23333 {
 
 " >> ${CADDY_CONF_FILE}
 
-	/etc/init.d/caddy start
+	/etc/init.d/caddy restart
 }
 
 install() {
