@@ -29,15 +29,6 @@ proxy / http://127.0.0.1:23333 {
 	/etc/init.d/caddy start
 }
 
-install_nodejs(){
-	if  [[ $NODEJS_INSTALLED != y ]]; then
-		curl -sL https://deb.nodesource.com/setup_12.x | bash -
-		apt update
-		apt install -y nodejs
-		npm install -g pm2
-	fi
-}
-
 install() {
 
 	echo -e "${Info_font_prefix}[信息]${Font_suffix} 开始安装..."
@@ -46,13 +37,18 @@ install() {
 	apt update
 	apt install -y zip unzip curl git
 	
-	install_nodejs
+	if  [[ $NODEJS_INSTALLED != y ]]; then
+		curl -sL https://deb.nodesource.com/setup_12.x | bash -
+		apt update
+		apt install -y nodejs
+	fi
 	
 	git clone https://github.com/iwestlin/gd-utils && cd "$GDUTILS_DIR"
 	npm install --unsafe-perm=true --allow-root
+	npm install -g pm2
 	
 	wget --no-check-certificate -q $SA_ZIP_URL -O SA.zip
-	unzip -o -q SA.zip -d sa/ && rm -rf SA.zip
+	unzip -o SA.zip -d sa/ && rm -rf SA.zip
 	
 	echo "const TIMEOUT_BASE = 7000
 const TIMEOUT_MAX = 60000

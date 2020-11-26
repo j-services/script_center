@@ -8,9 +8,9 @@ set_dns(){
 		ipv6only="n"
 	fi
 	if [ $ipv6only == y ]; then
-		echo "nameserver 2a09:11c0:f1:bbf0::70\nnameserver 2a03:7900:2:0:31:3:104:161" > /etc/resolv.conf
+		echo -e "nameserver 2a09:11c0:f1:bbf0::70\nnameserver 2a03:7900:2:0:31:3:104:161" > /etc/resolv.conf
 	else
-		echo "nameserver 8.8.8.8\nnameserver 8.8.4.4" > /etc/resolv.conf
+		echo -e "nameserver 8.8.8.8\nnameserver 8.8.4.4" > /etc/resolv.conf
 	fi
 }
 
