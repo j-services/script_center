@@ -48,7 +48,7 @@ install() {
 	
 	install_nodejs
 	
-	git clone https://github.com/iwestlin/gd-utils && cd gd-utils
+	git clone https://github.com/iwestlin/gd-utils && cd "$GDUTILS_DIR"
 	npm install --unsafe-perm=true --allow-root
 	
 	wget --no-check-certificate -q $SA_ZIP_URL -O SA.zip
@@ -71,7 +71,7 @@ const AUTH = {
   tg_whitelist: ['$TG_USER_ID']
 }
 module.exports = { AUTH, PARALLEL_LIMIT, RETRY_LIMIT, TIMEOUT_BASE, TIMEOUT_MAX, LOG_DELAY, PAGE_SIZE, DEFAULT_TARGET }
-" > ./config.js
+" > "$GDUTILS_DIR"/config.js
 
 	pm2 start server.js --node-args="--max-old-space-size=$MAX_OLD_SPACE_SIZE"
 
