@@ -3,14 +3,13 @@
 Info_font_prefix="\033[32m" && Error_font_prefix="\033[31m" && Info_background_prefix="\033[42;37m" && Error_background_prefix="\033[41;37m" && Font_suffix="\033[0m"
 
 set_dns(){
-	read -p "是否Only IPv6？（y/n, default: n）：" ipv6only
-	if  [ ! -n "$ipv6only" ]; then
-		ipv6only="n"
+	read -p "是否设置Google DNS？（y/n, default: y）：" GoogleDNS
+	if  [ ! -n "$GoogleDNS" ]; then
+		ipv6only="y"
 	fi
-	if [ $ipv6only == y ]; then
-		echo -e "nameserver 2a09:11c0:f1:bbf0::70\nnameserver 2a03:7900:2:0:31:3:104:161" > /etc/resolv.conf
-	else
-		echo -e "nameserver 8.8.8.8\nnameserver 8.8.4.4" > /etc/resolv.conf
+	if [ $GoogleDNS == y ]; then
+		echo "nameserver 8.8.8.8
+nameserver 8.8.4.4" > /etc/resolv.conf
 	fi
 }
 
