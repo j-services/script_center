@@ -8,8 +8,10 @@ set_dns(){
 		ipv6only="y"
 	fi
 	if [ $GoogleDNS == y ]; then
+		apt install -y resolvconf
 		echo "nameserver 8.8.8.8
-nameserver 8.8.4.4" > /etc/resolv.conf
+nameserver 114.114.114.114" > /etc/resolvconf/resolv.conf.d/base
+		resolvconf -u
 	fi
 }
 
