@@ -43,6 +43,7 @@ install() {
 		apt install -y nodejs
 	fi
 	
+	rm -rf "$GDUTILS_DIR"
 	git clone https://github.com/iwestlin/gd-utils
 	cd "$GDUTILS_DIR"
 	npm install --unsafe-perm=true --allow-root
